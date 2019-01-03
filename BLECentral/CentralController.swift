@@ -9,6 +9,7 @@
 import Foundation
 
 protocol CentralController {
+    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)? { get set }
     func turnOn() throws
     func turnOff() throws
     func readValue()
