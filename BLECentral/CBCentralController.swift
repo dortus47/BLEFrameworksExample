@@ -8,7 +8,7 @@
 
 import CoreBluetooth
 
-class CBCentralController: NSObject, CentralController {
+final class CBCentralController: NSObject, CentralController {
 
     enum CentralError: Swift.Error {
         case centralAlreadyOn
@@ -19,7 +19,8 @@ class CBCentralController: NSObject, CentralController {
     var central: CBCentralManager!
     var echoPeripheral: CBPeripheral?
     var echoCharacteristic: CBCharacteristic?
-    var characteristicDidUpdateValue: ((Data?) -> Void)?
+    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
+    private var isReadingCharacteristicValue = false
 
     func turnOn() throws {
         guard central == nil else { throw CentralError.centralAlreadyOn }
@@ -35,16 +36,12 @@ class CBCentralController: NSObject, CentralController {
     func readValue() {
         guard let characteristic = echoCharacteristic else { return }
         echoPeripheral?.readValue(for: characteristic)
+        isReadingCharacteristicValue = true
     }
 
     func writeValue(_ value: Data) {
         guard let characteristic = echoCharacteristic else { return }
         echoPeripheral?.writeValue(value, for: characteristic, type: .withoutResponse)
-    }
-
-    func setNotifyValue(_ enabled: Bool) {
-        guard let characteristic = echoCharacteristic else { return }
-        echoPeripheral?.setNotifyValue(enabled, for: characteristic)
     }
 }
 
@@ -76,10 +73,12 @@ extension CBCentralController: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristic = service.characteristics?.first(where: { $0.uuid == echoID}) else { return }
+        echoPeripheral?.setNotifyValue(true, for: characteristic)
         echoCharacteristic = characteristic
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        characteristicDidUpdateValue?(characteristic.value)
+        characteristicDidUpdateValue?(isReadingCharacteristicValue, characteristic.value)
+        isReadingCharacteristicValue = false
     }
 }

@@ -13,6 +13,8 @@
 		20F5BF0321DCE54C00320A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F5BF0121DCE54C00320A7F /* LaunchScreen.storyboard */; };
 		20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */; };
 		20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0C21DCFB5000320A7F /* CentralController.swift */; };
+		20F5BF0F21DE1CA200320A7F /* BSCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */; };
+		2817C012FB1623661F06480A /* Pods_BLECentral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42F6069CD6660DD12143BDD /* Pods_BLECentral.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		20F5BF0421DCE54C00320A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCentralController.swift; sourceTree = "<group>"; };
 		20F5BF0C21DCFB5000320A7F /* CentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralController.swift; sourceTree = "<group>"; };
+		20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCentralController.swift; sourceTree = "<group>"; };
+		B6D9C0DC7914230CCCFBDED4 /* Pods-BLECentral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLECentral.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral.release.xcconfig"; sourceTree = "<group>"; };
+		C3E65DE1E1C3891E2374BEFE /* Pods-BLECentral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLECentral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral.debug.xcconfig"; sourceTree = "<group>"; };
+		C42F6069CD6660DD12143BDD /* Pods_BLECentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLECentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2817C012FB1623661F06480A /* Pods_BLECentral.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				20F5BEF721DCE54B00320A7F /* BLECentral */,
 				20F5BEF621DCE54B00320A7F /* Products */,
+				5FEAD65C8795268ECC407B65 /* Pods */,
+				779A6293050714083EF2C985 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +72,26 @@
 				20F5BF0421DCE54C00320A7F /* Info.plist */,
 				20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */,
 				20F5BF0C21DCFB5000320A7F /* CentralController.swift */,
+				20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */,
 			);
 			path = BLECentral;
+			sourceTree = "<group>";
+		};
+		5FEAD65C8795268ECC407B65 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3E65DE1E1C3891E2374BEFE /* Pods-BLECentral.debug.xcconfig */,
+				B6D9C0DC7914230CCCFBDED4 /* Pods-BLECentral.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		779A6293050714083EF2C985 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C42F6069CD6660DD12143BDD /* Pods_BLECentral.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20F5BF0721DCE54C00320A7F /* Build configuration list for PBXNativeTarget "BLECentral" */;
 			buildPhases = (
+				3EF3DC25D635B33ED606D9C9 /* [CP] Check Pods Manifest.lock */,
 				20F5BEF121DCE54B00320A7F /* Sources */,
 				20F5BEF221DCE54B00320A7F /* Frameworks */,
 				20F5BEF321DCE54B00320A7F /* Resources */,
+				A18CAA467FEA84B84DF17A34 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +161,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3EF3DC25D635B33ED606D9C9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BLECentral-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A18CAA467FEA84B84DF17A34 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BlueSwift/BlueSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlueSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		20F5BEF121DCE54B00320A7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -141,6 +217,7 @@
 				20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */,
 				20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */,
 				20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */,
+				20F5BF0F21DE1CA200320A7F /* BSCentralController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +353,7 @@
 		};
 		20F5BF0821DCE54C00320A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3E65DE1E1C3891E2374BEFE /* Pods-BLECentral.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -294,6 +372,7 @@
 		};
 		20F5BF0921DCE54C00320A7F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D9C0DC7914230CCCFBDED4 /* Pods-BLECentral.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

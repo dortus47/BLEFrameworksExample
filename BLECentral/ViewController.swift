@@ -8,15 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
-    private let centralController = CBCentralController()
+    private let centralController = BSCentralController()
 
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Echo characteristic"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+
+    private let centralSwitch: UISwitch = {
+        let sw = UISwitch()
+        sw.addTarget(self, action: #selector(centralSwitchChanged), for: .valueChanged)
+        sw.translatesAutoresizingMaskIntoConstraints = false
+        return sw
     }()
 
     private let readLabel: UILabel = {
@@ -55,15 +62,6 @@ class ViewController: UIViewController {
         return button
     }()
 
-    private let notifyButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Turn on", for: .normal)
-        button.setTitle("Turn off", for: .selected)
-        button.addTarget(self, action: #selector(notifyButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
     private lazy var readStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [readLabel, readButton])
         stackView.axis = .horizontal
@@ -80,40 +78,35 @@ class ViewController: UIViewController {
         return stackView
     }()
 
-    lazy var notifiedStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [notifiedLabel, notifyButton])
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupLayout()
         writeTextField.delegate = self
-        centralController.characteristicDidUpdateValue = { [unowned self] value in
+        centralController.characteristicDidUpdateValue = { [unowned self] isReading, value in
             guard let value = value else { return }
             let stringValue = String(data: value, encoding: .utf8)
-            self.readLabel.text = "Read value: \(stringValue ?? "")"
-            self.notifiedLabel.text = "Notified value: \(stringValue ?? "")"
+            if isReading {
+                self.readLabel.text = "Read value: \(stringValue ?? "")"
+            } else {
+                self.notifiedLabel.text = "Notified value: \(stringValue ?? "")"
+            }
         }
-        try! centralController.turnOn()
     }
 
     private func setupLayout() {
-        [titleLabel, readStackView, notifiedStackView, writeStackView].forEach { view.addSubview($0) }
+        [titleLabel, centralSwitch,readStackView, notifiedLabel, writeStackView].forEach { view.addSubview($0) }
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            centralSwitch.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             readStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             readStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            readStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            notifiedStackView.topAnchor.constraint(equalTo: readStackView.bottomAnchor, constant: 8),
-            notifiedStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            notifiedStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            writeStackView.topAnchor.constraint(equalTo: notifiedStackView.bottomAnchor, constant: 8),
+            readStackView.topAnchor.constraint(equalTo: centralSwitch.bottomAnchor, constant: 10),
+            notifiedLabel.topAnchor.constraint(equalTo: readStackView.bottomAnchor, constant: 8),
+            notifiedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            notifiedLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            writeStackView.topAnchor.constraint(equalTo: notifiedLabel.bottomAnchor, constant: 8),
             writeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             writeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -125,9 +118,8 @@ class ViewController: UIViewController {
     }
 
     @objc
-    private func notifyButtonTapped() {
-        notifyButton.isSelected = !notifyButton.isSelected
-        centralController.setNotifyValue(notifyButton.isSelected)
+    private func centralSwitchChanged() {
+        try! centralSwitch.isOn ? centralController.turnOn() : centralController.turnOff()
     }
 }
 

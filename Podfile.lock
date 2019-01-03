@@ -1,0 +1,16 @@
+PODS:
+  - BlueSwift (1.0.2)
+
+DEPENDENCIES:
+  - BlueSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - BlueSwift
+
+SPEC CHECKSUMS:
+  BlueSwift: 999cbce803d1acefe88be4a01980033d6d476bbb
+
+PODFILE CHECKSUM: 8c82f847cbfa40d896c159c71cb798a61fe133d5
+
+COCOAPODS: 1.5.3

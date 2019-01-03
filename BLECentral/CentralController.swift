@@ -13,5 +13,4 @@ protocol CentralController {
     func turnOff() throws
     func readValue()
     func writeValue(_ value: Data)
-    func setNotifyValue(_ enabled: Bool)
 }
