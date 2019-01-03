@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BEF821DCE54B00320A7F /* AppDelegate.swift */; };
 		20F5BEFB21DCE54B00320A7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BEFA21DCE54B00320A7F /* ViewController.swift */; };
-		20F5BEFE21DCE54B00320A7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F5BEFC21DCE54B00320A7F /* Main.storyboard */; };
 		20F5BF0021DCE54C00320A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F5BEFF21DCE54C00320A7F /* Assets.xcassets */; };
 		20F5BF0321DCE54C00320A7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20F5BF0121DCE54C00320A7F /* LaunchScreen.storyboard */; };
+		20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */; };
+		20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0C21DCFB5000320A7F /* CentralController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20F5BEF521DCE54B00320A7F /* BLECentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLECentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F5BEF821DCE54B00320A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20F5BEFA21DCE54B00320A7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		20F5BEFD21DCE54B00320A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20F5BEFF21DCE54C00320A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20F5BF0221DCE54C00320A7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20F5BF0421DCE54C00320A7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCentralController.swift; sourceTree = "<group>"; };
+		20F5BF0C21DCFB5000320A7F /* CentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +58,11 @@
 			children = (
 				20F5BEF821DCE54B00320A7F /* AppDelegate.swift */,
 				20F5BEFA21DCE54B00320A7F /* ViewController.swift */,
-				20F5BEFC21DCE54B00320A7F /* Main.storyboard */,
 				20F5BEFF21DCE54C00320A7F /* Assets.xcassets */,
 				20F5BF0121DCE54C00320A7F /* LaunchScreen.storyboard */,
 				20F5BF0421DCE54C00320A7F /* Info.plist */,
+				20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */,
+				20F5BF0C21DCFB5000320A7F /* CentralController.swift */,
 			);
 			path = BLECentral;
 			sourceTree = "<group>";
@@ -124,7 +127,6 @@
 			files = (
 				20F5BF0321DCE54C00320A7F /* LaunchScreen.storyboard in Resources */,
 				20F5BF0021DCE54C00320A7F /* Assets.xcassets in Resources */,
-				20F5BEFE21DCE54B00320A7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,21 +138,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				20F5BEFB21DCE54B00320A7F /* ViewController.swift in Sources */,
+				20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */,
 				20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */,
+				20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		20F5BEFC21DCE54B00320A7F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				20F5BEFD21DCE54B00320A7F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		20F5BF0121DCE54C00320A7F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
