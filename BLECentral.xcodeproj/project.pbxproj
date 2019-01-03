@@ -14,6 +14,7 @@
 		20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */; };
 		20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0C21DCFB5000320A7F /* CentralController.swift */; };
 		20F5BF0F21DE1CA200320A7F /* BSCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */; };
+		20F5BF1121DE6A5200320A7F /* BCCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BF1021DE6A5200320A7F /* BCCentralController.swift */; };
 		2817C012FB1623661F06480A /* Pods_BLECentral.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42F6069CD6660DD12143BDD /* Pods_BLECentral.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBCentralController.swift; sourceTree = "<group>"; };
 		20F5BF0C21DCFB5000320A7F /* CentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralController.swift; sourceTree = "<group>"; };
 		20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSCentralController.swift; sourceTree = "<group>"; };
+		20F5BF1021DE6A5200320A7F /* BCCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCCentralController.swift; sourceTree = "<group>"; };
 		B6D9C0DC7914230CCCFBDED4 /* Pods-BLECentral.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLECentral.release.xcconfig"; path = "Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral.release.xcconfig"; sourceTree = "<group>"; };
 		C3E65DE1E1C3891E2374BEFE /* Pods-BLECentral.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BLECentral.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral.debug.xcconfig"; sourceTree = "<group>"; };
 		C42F6069CD6660DD12143BDD /* Pods_BLECentral.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BLECentral.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 				20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */,
 				20F5BF0C21DCFB5000320A7F /* CentralController.swift */,
 				20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */,
+				20F5BF1021DE6A5200320A7F /* BCCentralController.swift */,
 			);
 			path = BLECentral;
 			sourceTree = "<group>";
@@ -193,12 +196,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BlueCapKit/BlueCapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/BlueSwift/BlueSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlueCapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlueSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +222,7 @@
 				20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */,
 				20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */,
 				20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */,
+				20F5BF1121DE6A5200320A7F /* BCCentralController.swift in Sources */,
 				20F5BF0F21DE1CA200320A7F /* BSCentralController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

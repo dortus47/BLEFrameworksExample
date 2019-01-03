@@ -1,16 +1,20 @@
 PODS:
+  - BlueCapKit (0.7.0)
   - BlueSwift (1.0.2)
 
 DEPENDENCIES:
+  - BlueCapKit
   - BlueSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BlueCapKit
     - BlueSwift
 
 SPEC CHECKSUMS:
+  BlueCapKit: b13b8715d4de6f325971c4dd5bc33598697dad2f
   BlueSwift: 999cbce803d1acefe88be4a01980033d6d476bbb
 
-PODFILE CHECKSUM: 8c82f847cbfa40d896c159c71cb798a61fe133d5
+PODFILE CHECKSUM: c045db1db8f3adfa1aaef2a882d761e8dc58d8ba
 
 COCOAPODS: 1.5.3

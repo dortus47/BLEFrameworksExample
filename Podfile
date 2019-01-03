@@ -6,6 +6,7 @@ target 'BLECentral' do
   use_frameworks!
 
   # Pods for BLECentral
-  pod 'BlueSwift'  
+  pod 'BlueSwift'
+  pod 'BlueCapKit'
 
 end
