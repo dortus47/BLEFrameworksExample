@@ -25,14 +25,20 @@ final class BCCentralController: CentralController {
     
     private var central: CentralManager!
     private var peripheral: Peripheral?
-    private var discoveryFuture: FutureStream<Void>?
     private var echoCharacteristic: Characteristic?
+    private var subscriptionFuture: FutureStream<Data?>? {
+        didSet {
+            subscriptionFuture?.onSuccess { data in
+                self.characteristicDidUpdateValue?(false, data)
+            }
+        }
+    }
     var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
 
     func turnOn() throws {
-        central = CentralManager(options: [CBCentralManagerOptionRestoreIdentifierKey : "us.gnos.BlueCap.central-manager-documentation" as NSString])
-        let stateChangeFuture = central.whenStateChanges()
-        let scanFuture = stateChangeFuture.flatMap { [weak central] state -> FutureStream<Peripheral> in
+        central = CentralManager()
+        let discoveryFuture = central.whenStateChanges()
+        .flatMap { [weak central] state -> FutureStream<Peripheral> in
             guard let central = central else { throw CentralError.unlikely }
             switch state {
             case .poweredOn:
@@ -46,43 +52,48 @@ final class BCCentralController: CentralController {
             case .unknown:
                 throw CentralError.unknown
             }
-        }
-
-        let connectionFuture = scanFuture.flatMap { [weak self] discoveredPeripheral  -> FutureStream<Void> in
-            self?.central.stopScanning()
-            self?.peripheral = discoveredPeripheral
-            return discoveredPeripheral.connect(connectionTimeout: 10.0)
-        }
-
-        discoveryFuture = connectionFuture.flatMap { [weak peripheral] () -> Future<Void> in
-            guard let peripheral = peripheral else {
-                throw CentralError.unlikely
-            }
-            return peripheral.discoverServices([CBUUID(string: "ec00")])
-            }.flatMap { [weak peripheral] () -> Future<Void> in
-                guard let peripheral = peripheral, let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first else {
-                    throw CentralError.serviceNotFound
+        }.flatMap { [weak self] discoveredPeripheral  -> FutureStream<Void> in
+                self?.central.stopScanning()
+                self?.peripheral = discoveredPeripheral
+                return discoveredPeripheral.connect(connectionTimeout: 10.0)
+        }.flatMap { [weak self] () -> Future<Void> in
+                guard let peripheral = self?.peripheral else {
+                    throw CentralError.unlikely
                 }
-                return service.discoverCharacteristics([CBUUID(string: "ec00")])
-        }
-
-        let subscriptionFuture = discoveryFuture?.flatMap { [weak echoCharacteristic, weak peripheral] () -> Future<Void> in
-            guard let peripheral = peripheral, let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first else {
+                return peripheral.discoverServices([CBUUID(string: "ec00")])
+        }.flatMap { [weak self] () -> Future<Void> in
+            guard
+                let peripheral = self?.peripheral,
+                let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first
+            else {
                 throw CentralError.serviceNotFound
             }
-            guard let characteristic = service.characteristics(withUUID: CBUUID(string: "ec00"))?.first else {
-                throw CentralError.dataCharactertisticNotFound
-            }
-            echoCharacteristic = characteristic
-            return characteristic.startNotifying()
-            }.flatMap(mapping: { [weak echoCharacteristic]() -> FutureStream<Data?> in
-                guard let characteristic = echoCharacteristic else { throw CentralError.dataCharactertisticNotFound }
-                return characteristic.receiveNotificationUpdates()
-            })
-
-        subscriptionFuture?.onSuccess { [weak self] data in
-            self?.characteristicDidUpdateValue?(false, data)
+            return service.discoverCharacteristics([CBUUID(string: "ec00")])
         }
+
+        subscriptionFuture = discoveryFuture
+            .flatMap { [weak self] () -> Future<Void> in
+                guard
+                    let self = self,
+                    let peripheral = self.peripheral,
+                    let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first
+                else {
+                    throw CentralError.serviceNotFound
+                }
+                guard let characteristic = service
+                    .characteristics(withUUID: CBUUID(string: "ec00"))?
+                    .first
+                else {
+                        throw CentralError.dataCharactertisticNotFound
+                }
+                self.echoCharacteristic = characteristic
+                return self.echoCharacteristic!.startNotifying()
+            }.flatMap { [weak self] () -> FutureStream<Data?> in
+                guard let characteristic = self?.echoCharacteristic else {
+                    throw CentralError.dataCharactertisticNotFound
+                }
+                return characteristic.receiveNotificationUpdates()
+            }
     }
 
     func turnOff() throws {
@@ -90,12 +101,13 @@ final class BCCentralController: CentralController {
     }
 
     func readValue() {
-
+        echoCharacteristic?.read().onSuccess { [weak self] in
+            guard let data = self?.echoCharacteristic?.dataValue else { return }
+            self?.characteristicDidUpdateValue?(true, data)
+        }
     }
 
     func writeValue(_ value: Data) {
-        
+        _ = echoCharacteristic?.write(data: value, timeout: .infinity, type: .withoutResponse)
     }
-
-
 }
