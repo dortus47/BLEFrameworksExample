@@ -12,6 +12,8 @@ import BlueCapKit
 final class BCCentralController: CentralController {
 
     public enum CentralError : Error {
+        case centralAlreadyOn
+        case centralAlreadyOff
         case dataCharactertisticNotFound
         case enabledCharactertisticNotFound
         case updateCharactertisticNotFound
@@ -36,6 +38,7 @@ final class BCCentralController: CentralController {
     var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
 
     func turnOn() throws {
+        guard central == nil else { throw CentralError.centralAlreadyOn }
         central = CentralManager()
         let discoveryFuture = central.whenStateChanges()
         .flatMap { [weak central] state -> FutureStream<Peripheral> in
@@ -97,7 +100,9 @@ final class BCCentralController: CentralController {
     }
 
     func turnOff() throws {
-
+        guard central != nil else { throw CentralError.centralAlreadyOff }
+        central.stopScanning()
+        central = nil
     }
 
     func readValue() {
