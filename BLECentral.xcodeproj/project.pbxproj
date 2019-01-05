@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2082617621E01DAF00CC7886 /* RBCentralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2082617521E01DAF00CC7886 /* RBCentralController.swift */; };
 		20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BEF821DCE54B00320A7F /* AppDelegate.swift */; };
 		20F5BEFB21DCE54B00320A7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F5BEFA21DCE54B00320A7F /* ViewController.swift */; };
 		20F5BF0021DCE54C00320A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20F5BEFF21DCE54C00320A7F /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2082617521E01DAF00CC7886 /* RBCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCentralController.swift; sourceTree = "<group>"; };
 		20F5BEF521DCE54B00320A7F /* BLECentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLECentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F5BEF821DCE54B00320A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20F5BEFA21DCE54B00320A7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,10 +74,11 @@
 				20F5BEFF21DCE54C00320A7F /* Assets.xcassets */,
 				20F5BF0121DCE54C00320A7F /* LaunchScreen.storyboard */,
 				20F5BF0421DCE54C00320A7F /* Info.plist */,
-				20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */,
 				20F5BF0C21DCFB5000320A7F /* CentralController.swift */,
+				20F5BF0A21DCEBF800320A7F /* CBCentralController.swift */,
 				20F5BF0E21DE1CA200320A7F /* BSCentralController.swift */,
 				20F5BF1021DE6A5200320A7F /* BCCentralController.swift */,
+				2082617521E01DAF00CC7886 /* RBCentralController.swift */,
 			);
 			path = BLECentral;
 			sourceTree = "<group>";
@@ -198,6 +201,9 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BLECentral/Pods-BLECentral-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BlueCapKit/BlueCapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/BlueSwift/BlueSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBluetoothKit/RxBluetoothKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -205,6 +211,9 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlueCapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlueSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBluetoothKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -220,6 +229,7 @@
 			files = (
 				20F5BEFB21DCE54B00320A7F /* ViewController.swift in Sources */,
 				20F5BF0D21DCFB5000320A7F /* CentralController.swift in Sources */,
+				2082617621E01DAF00CC7886 /* RBCentralController.swift in Sources */,
 				20F5BEF921DCE54B00320A7F /* AppDelegate.swift in Sources */,
 				20F5BF0B21DCEBF800320A7F /* CBCentralController.swift in Sources */,
 				20F5BF1121DE6A5200320A7F /* BCCentralController.swift in Sources */,

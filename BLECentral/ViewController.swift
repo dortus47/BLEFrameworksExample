@@ -31,6 +31,7 @@ final class ViewController: UIViewController {
         segmentedControl.insertSegment(withTitle: "CB", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "BS", at: 1, animated: false)
         segmentedControl.insertSegment(withTitle: "BC", at: 2, animated: false)
+        segmentedControl.insertSegment(withTitle: "RB", at: 3, animated: false)
         segmentedControl.addTarget(self, action: #selector(bluetoothLibraryChanged), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         return segmentedControl
@@ -136,6 +137,8 @@ final class ViewController: UIViewController {
             centralController = BSCentralController()
         case 2:
             centralController = BCCentralController()
+        case 3:
+            centralController = RBCentralController()
         default:
             break
         }

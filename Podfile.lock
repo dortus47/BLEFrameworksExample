@@ -1,20 +1,32 @@
 PODS:
   - BlueCapKit (0.7.0)
   - BlueSwift (1.0.2)
+  - RxAtomic (4.4.0)
+  - RxBluetoothKit (5.1.4):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
   - BlueCapKit
   - BlueSwift
+  - RxBluetoothKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BlueCapKit
     - BlueSwift
+    - RxAtomic
+    - RxBluetoothKit
+    - RxSwift
 
 SPEC CHECKSUMS:
   BlueCapKit: b13b8715d4de6f325971c4dd5bc33598697dad2f
   BlueSwift: 999cbce803d1acefe88be4a01980033d6d476bbb
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxBluetoothKit: d18f7beb5fd4d2b24659d57548e38d5d2fac885b
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: c045db1db8f3adfa1aaef2a882d761e8dc58d8ba
+PODFILE CHECKSUM: fb8313e7011a729682f1e303c75ada6ce1a58461
 
 COCOAPODS: 1.5.3

@@ -8,5 +8,6 @@ target 'BLECentral' do
   # Pods for BLECentral
   pod 'BlueSwift'
   pod 'BlueCapKit'
+  pod 'RxBluetoothKit'
 
 end
