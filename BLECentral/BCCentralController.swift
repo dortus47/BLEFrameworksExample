@@ -46,7 +46,8 @@ final class BCCentralController: CentralController {
         case unknown
         case unlikely
     }
-    
+
+    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
     private var central: CentralManager!
     private var peripheral: Peripheral?
     private var echoCharacteristic: Characteristic?
@@ -57,7 +58,6 @@ final class BCCentralController: CentralController {
             }
         }
     }
-    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
 
     func turnOn() throws {
         guard central == nil else { throw CentralError.centralAlreadyOn }

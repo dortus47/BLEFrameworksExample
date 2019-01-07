@@ -37,11 +37,11 @@ final class CBCentralController: NSObject, CentralController {
         case centralAlreadyOff
     }
 
-    let echoID = CBUUID(string: "ec00")
-    var central: CBCentralManager!
-    var echoPeripheral: CBPeripheral?
-    var echoCharacteristic: CBCharacteristic?
     var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
+    private let echoID = CBUUID(string: "ec00")
+    private var central: CBCentralManager!
+    private var echoPeripheral: CBPeripheral?
+    private var echoCharacteristic: CBCharacteristic?
     private var isReadingCharacteristicValue = false
 
     func turnOn() throws {

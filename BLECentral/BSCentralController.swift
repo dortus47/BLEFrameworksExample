@@ -37,10 +37,10 @@ final class BSCentralController: CentralController {
         case centralAlreadyOff
     }
 
+    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
     private let connection = BluetoothConnection.shared
     private var echoCharacteristic: Characteristic!
     private var echoPeripheral: Peripheral<Connectable>?
-    var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
 
     func turnOn() throws {
         guard echoPeripheral == nil else { throw CentralError.centralAlreadyOn }

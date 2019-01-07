@@ -39,10 +39,10 @@ final class RBCentralController: CentralController {
         case centralAlreadyOff
     }
 
-    var subscriptionToCharacteristic: Disposable!
-    var central: CentralManager!
-    private var echoCharacteristic: Characteristic?
     var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
+    private var subscriptionToCharacteristic: Disposable!
+    private var central: CentralManager!
+    private var echoCharacteristic: Characteristic?
     private let disposeBag = DisposeBag()
 
     func turnOn() throws {
