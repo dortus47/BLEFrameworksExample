@@ -33,6 +33,7 @@ final class ViewController: UIViewController {
         segmentedControl.insertSegment(withTitle: "BC", at: 2, animated: false)
         segmentedControl.insertSegment(withTitle: "RB", at: 3, animated: false)
         segmentedControl.addTarget(self, action: #selector(bluetoothLibraryChanged), for: .valueChanged)
+        segmentedControl.selectedSegmentIndex = 0
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         return segmentedControl
     }()
