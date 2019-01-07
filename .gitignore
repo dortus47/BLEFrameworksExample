@@ -1,45 +1,19 @@
-#
-# .gitignore
-#
-# Copyright © 2017 Netguru Sp. z o.o. All rights reserved.
-#
+## User settings
+xcuserdata/
 
-.DS_Store
-.Trashes
-.localized
-
-build
-.build
-xcuserdata
-DerivedData
-
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-*.pbxuser
-*.xccheckout
-*.xcuserstate
+## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
+*.xccheckout
+
+## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+build/
+DerivedData/
 *.moved-aside
-*.hmap
-*.o
-*.hmap
-*.ipa
-*.dSYM.zip
-
-timeline.xctimeline
-playground.xcworkspace
-
-.idea
-*.iml
-
-Pods
-Carthage
-Packages
-
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
-
-.env
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
