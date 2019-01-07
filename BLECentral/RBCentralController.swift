@@ -26,7 +26,7 @@ final class RBCentralController: CentralController {
     func turnOn() throws {
         let echoID = CBUUID(string: "ec00")
         central = CentralManager()
-        central
+        subscriptionToCharacteristic = central
             .observeState()
             .startWith(central.state)
             .filter { $0 == .poweredOn }
@@ -43,7 +43,7 @@ final class RBCentralController: CentralController {
                         self?.characteristicDidUpdateValue?(false, $0.element?.value)
                         return
                 }
-        }.disposed(by: disposeBag)
+            }
     }
 
     func turnOff() throws {
@@ -60,7 +60,7 @@ final class RBCentralController: CentralController {
             .timeout(0.5, scheduler: MainScheduler.instance)
             .subscribe {
                 self.characteristicDidUpdateValue?(true, $0.element?.value)
-        }
+            }
     }
 
     func writeValue(_ value: Data) {
