@@ -105,14 +105,14 @@ final class ViewController: UIViewController {
             centralSwitch.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bluetoothLibrariesSegmented.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bluetoothLibrariesSegmented.topAnchor.constraint(equalTo: centralSwitch.bottomAnchor, constant: 10),
-            readStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            readStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             readStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             readStackView.topAnchor.constraint(equalTo: bluetoothLibrariesSegmented.bottomAnchor, constant: 10),
             notifiedLabel.topAnchor.constraint(equalTo: readStackView.bottomAnchor, constant: 8),
-            notifiedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            notifiedLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             notifiedLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             writeStackView.topAnchor.constraint(equalTo: notifiedLabel.bottomAnchor, constant: 8),
-            writeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            writeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             writeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
