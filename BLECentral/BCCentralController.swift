@@ -40,12 +40,13 @@ final class BCCentralController: CentralController {
     func turnOn() throws {
         guard central == nil else { throw CentralError.centralAlreadyOn }
         central = CentralManager()
+        let echoID = CBUUID(string: "ec00")
         let discoveryFuture = central.whenStateChanges()
         .flatMap { [weak central] state -> FutureStream<Peripheral> in
             guard let central = central else { throw CentralError.unlikely }
             switch state {
             case .poweredOn:
-                return central.startScanning(forServiceUUIDs: [CBUUID(string: "ec00")])
+                return central.startScanning(forServiceUUIDs: [echoID])
             case .poweredOff:
                 throw CentralError.poweredOff
             case .unauthorized, .unsupported:
@@ -63,15 +64,15 @@ final class BCCentralController: CentralController {
                 guard let peripheral = self?.peripheral else {
                     throw CentralError.unlikely
                 }
-                return peripheral.discoverServices([CBUUID(string: "ec00")])
+                return peripheral.discoverServices([echoID])
         }.flatMap { [weak self] () -> Future<Void> in
             guard
                 let peripheral = self?.peripheral,
-                let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first
+                let service = peripheral.services(withUUID: echoID)?.first
             else {
                 throw CentralError.serviceNotFound
             }
-            return service.discoverCharacteristics([CBUUID(string: "ec00")])
+            return service.discoverCharacteristics([echoID])
         }
 
         subscriptionFuture = discoveryFuture
@@ -79,12 +80,12 @@ final class BCCentralController: CentralController {
                 guard
                     let self = self,
                     let peripheral = self.peripheral,
-                    let service = peripheral.services(withUUID: CBUUID(string: "ec00"))?.first
+                    let service = peripheral.services(withUUID: echoID)?.first
                 else {
                     throw CentralError.serviceNotFound
                 }
                 guard let characteristic = service
-                    .characteristics(withUUID: CBUUID(string: "ec00"))?
+                    .characteristics(withUUID: echoID)?
                     .first
                 else {
                         throw CentralError.dataCharactertisticNotFound
