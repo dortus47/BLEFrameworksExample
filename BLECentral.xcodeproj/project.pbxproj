@@ -21,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		2082617521E01DAF00CC7886 /* RBCentralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RBCentralController.swift; sourceTree = "<group>"; };
+		2082617721E35F6300CC7886 /* BLEPeripheral.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BLEPeripheral.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		20F5BEF521DCE54B00320A7F /* BLECentral.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLECentral.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20F5BEF821DCE54B00320A7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20F5BEFA21DCE54B00320A7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		20F5BEEC21DCE54B00320A7F = {
 			isa = PBXGroup;
 			children = (
+				2082617721E35F6300CC7886 /* BLEPeripheral.playground */,
 				20F5BEF721DCE54B00320A7F /* BLECentral */,
 				20F5BEF621DCE54B00320A7F /* Products */,
 				5FEAD65C8795268ECC407B65 /* Pods */,
