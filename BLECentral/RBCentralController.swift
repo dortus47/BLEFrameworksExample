@@ -12,7 +12,7 @@ import RxBluetoothKit
 
 final class RBCentralController: CentralController {
 
-    enum CentralError: Swift.Error {
+    enum CentralError: Error {
         case centralAlreadyOn
         case centralAlreadyOff
     }

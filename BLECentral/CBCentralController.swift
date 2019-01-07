@@ -10,7 +10,7 @@ import CoreBluetooth
 
 final class CBCentralController: NSObject, CentralController {
 
-    enum CentralError: Swift.Error {
+    enum CentralError: Error {
         case centralAlreadyOn
         case centralAlreadyOff
     }
