@@ -10,18 +10,25 @@ import BlueSwift
 
 final class BSCentralController: CentralController {
 
+    enum CentralError: Error {
+        case centralAlreadyOn
+        case centralAlreadyOff
+    }
+
     private let connection = BluetoothConnection.shared
     private var echoCharacteristic: Characteristic!
     private var echoPeripheral: Peripheral<Connectable>?
     var characteristicDidUpdateValue: ((Bool, Data?) -> Void)?
 
     func turnOn() throws {
-        echoCharacteristic = try! Characteristic(uuid: "ec00", shouldObserveNotification: true)
+        guard echoPeripheral == nil else { throw CentralError.centralAlreadyOn }
+        let echoIDString = "ec00"
+        echoCharacteristic = try! Characteristic(uuid: echoIDString, shouldObserveNotification: true)
         echoCharacteristic.notifyHandler = { [weak self] data in
             self?.characteristicDidUpdateValue?(false, data)
         }
-        let echoService = try! Service(uuid: "ec00", characteristics: [echoCharacteristic])
-        let configuration = try Configuration(services: [echoService], advertisement: "ec00")
+        let echoService = try! Service(uuid: echoIDString, characteristics: [echoCharacteristic])
+        let configuration = try! Configuration(services: [echoService], advertisement: echoIDString)
         echoPeripheral = Peripheral(configuration: configuration)
         connection.connect(echoPeripheral!) { error in
             print(error ?? "error connecting to peripheral")
@@ -29,7 +36,9 @@ final class BSCentralController: CentralController {
     }
 
     func turnOff() throws {
+        guard echoPeripheral != nil else { throw CentralError.centralAlreadyOff }
         try connection.disconnect(echoPeripheral!)
+        echoPeripheral = nil
     }
 
     func readValue() {
