@@ -1,5 +1,6 @@
 PODS:
   - BlueCapKit (0.7.0)
+  - Bluejay (0.7.1)
   - BlueSwift (1.0.2)
   - RxAtomic (4.4.0)
   - RxBluetoothKit (5.1.4):
@@ -9,12 +10,14 @@ PODS:
 
 DEPENDENCIES:
   - BlueCapKit
+  - Bluejay
   - BlueSwift
   - RxBluetoothKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BlueCapKit
+    - Bluejay
     - BlueSwift
     - RxAtomic
     - RxBluetoothKit
@@ -22,11 +25,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BlueCapKit: b13b8715d4de6f325971c4dd5bc33598697dad2f
+  Bluejay: a1df6e19ae414e7aac1fef1b237441226c6e1506
   BlueSwift: 999cbce803d1acefe88be4a01980033d6d476bbb
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxBluetoothKit: d18f7beb5fd4d2b24659d57548e38d5d2fac885b
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: fb8313e7011a729682f1e303c75ada6ce1a58461
+PODFILE CHECKSUM: c17de2a14da76f553973e13f07ddec3fa7bf9ce4
 
 COCOAPODS: 1.5.3
