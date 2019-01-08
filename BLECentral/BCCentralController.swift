@@ -64,38 +64,38 @@ final class BCCentralController: CentralController {
         central = CentralManager()
         let echoID = CBUUID(string: "ec00")
         let discoveryFuture = central.whenStateChanges()
-        .flatMap { [weak central] state -> FutureStream<Peripheral> in
-            guard let central = central else { throw CentralError.unlikely }
-            switch state {
-            case .poweredOn:
-                return central.startScanning(forServiceUUIDs: [echoID])
-            case .poweredOff:
-                throw CentralError.poweredOff
-            case .unauthorized, .unsupported:
-                throw CentralError.invalidState
-            case .resetting:
-                throw CentralError.resetting
-            case .unknown:
-                throw CentralError.unknown
-            }
-        }.flatMap { [weak self] discoveredPeripheral  -> FutureStream<Void> in
+            .flatMap { [weak central] state -> FutureStream<Peripheral> in
+                guard let central = central else { throw CentralError.unlikely }
+                switch state {
+                case .poweredOn:
+                    return central.startScanning(forServiceUUIDs: [echoID])
+                case .poweredOff:
+                    throw CentralError.poweredOff
+                case .unauthorized, .unsupported:
+                    throw CentralError.invalidState
+                case .resetting:
+                    throw CentralError.resetting
+                case .unknown:
+                    throw CentralError.unknown
+                }
+            }.flatMap { [weak self] discoveredPeripheral  -> FutureStream<Void> in
                 self?.central.stopScanning()
                 self?.peripheral = discoveredPeripheral
                 return discoveredPeripheral.connect(connectionTimeout: 10.0)
-        }.flatMap { [weak self] () -> Future<Void> in
+            }.flatMap { [weak self] () -> Future<Void> in
                 guard let peripheral = self?.peripheral else {
                     throw CentralError.unlikely
                 }
                 return peripheral.discoverServices([echoID])
-        }.flatMap { [weak self] () -> Future<Void> in
-            guard
-                let peripheral = self?.peripheral,
-                let service = peripheral.services(withUUID: echoID)?.first
-            else {
-                throw CentralError.serviceNotFound
+            }.flatMap { [weak self] () -> Future<Void> in
+                guard
+                    let peripheral = self?.peripheral,
+                    let service = peripheral.services(withUUID: echoID)?.first
+                    else {
+                        throw CentralError.serviceNotFound
+                }
+                return service.discoverCharacteristics([echoID])
             }
-            return service.discoverCharacteristics([echoID])
-        }
 
         subscriptionFuture = discoveryFuture
             .flatMap { [weak self] () -> Future<Void> in
