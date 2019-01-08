@@ -60,7 +60,8 @@ final class RBCentralController: CentralController {
             .flatMap { $0.discoverCharacteristics([echoID]) }
             .subscribe { [weak self] characteristics in
                 self?.echoCharacteristic = characteristics.element?.first
-                self?.subscriptionToCharacteristic = self?.echoCharacteristic?.observeValueUpdateAndSetNotification()
+                self?.subscriptionToCharacteristic = self?.echoCharacteristic?
+                    .observeValueUpdateAndSetNotification()
                     .subscribe {
                         self?.characteristicDidUpdateValue?(false, $0.element?.value)
                         return
@@ -86,6 +87,9 @@ final class RBCentralController: CentralController {
     }
 
     func writeValue(_ value: Data) {
-        echoCharacteristic?.writeValue(value, type: .withoutResponse).subscribe().dispose()
+        echoCharacteristic?
+            .writeValue(value, type: .withoutResponse)
+            .subscribe()
+            .dispose()
     }
 }
