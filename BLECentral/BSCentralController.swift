@@ -71,7 +71,7 @@ final class BSCentralController: CentralController {
     }
 
     func writeValue(_ value: Data) {
-        echoPeripheral?.write(command: .data(value), characteristic: echoCharacteristic, type: .withoutResponse) { (error) in
+        echoPeripheral?.write(command: .data(value), characteristic: echoCharacteristic) { (error) in
             print(error ?? "error writing characteristic value")
         }
     }

@@ -54,7 +54,6 @@
 		20F5BEEC21DCE54B00320A7F = {
 			isa = PBXGroup;
 			children = (
-				2082617721E35F6300CC7886 /* BLEPeripheral.playground */,
 				20F5BEF721DCE54B00320A7F /* BLECentral */,
 				20F5BEF621DCE54B00320A7F /* Products */,
 				5FEAD65C8795268ECC407B65 /* Pods */,
@@ -73,6 +72,7 @@
 		20F5BEF721DCE54B00320A7F /* BLECentral */ = {
 			isa = PBXGroup;
 			children = (
+				2082617721E35F6300CC7886 /* BLEPeripheral.playground */,
 				20F5BEF821DCE54B00320A7F /* AppDelegate.swift */,
 				20F5BEFA21DCE54B00320A7F /* ViewController.swift */,
 				20F5BEFF21DCE54C00320A7F /* Assets.xcassets */,
