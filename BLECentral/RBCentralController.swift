@@ -43,7 +43,6 @@ final class RBCentralController: CentralController {
     private var subscriptionToCharacteristic: Disposable!
     private var central: CentralManager!
     private var echoCharacteristic: Characteristic?
-    private let disposeBag = DisposeBag()
 
     func turnOn() throws {
         let echoID = CBUUID(string: "ec00")
