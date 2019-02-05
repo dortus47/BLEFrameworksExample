@@ -40,10 +40,7 @@ final class BCCentralController: CentralController {
         case enabledCharactertisticNotFound
         case updateCharactertisticNotFound
         case serviceNotFound
-        case invalidState
-        case resetting
-        case poweredOff
-        case unknown
+        case notPoweredOn
         case unlikely
     }
 
@@ -65,19 +62,8 @@ final class BCCentralController: CentralController {
         let echoID = CBUUID(string: "ec00")
         let discoveryFuture = central.whenStateChanges()
             .flatMap { [weak central] state -> FutureStream<Peripheral> in
-                guard let central = central else { throw CentralError.unlikely }
-                switch state {
-                case .poweredOn:
-                    return central.startScanning(forServiceUUIDs: [echoID])
-                case .poweredOff:
-                    throw CentralError.poweredOff
-                case .unauthorized, .unsupported:
-                    throw CentralError.invalidState
-                case .resetting:
-                    throw CentralError.resetting
-                case .unknown:
-                    throw CentralError.unknown
-                }
+                guard let central = central, state == .poweredOn else { throw CentralError.notPoweredOn }
+                return central.startScanning(forServiceUUIDs: [echoID])
             }.flatMap { [weak self] discoveredPeripheral  -> FutureStream<Void> in
                 self?.central.stopScanning()
                 self?.peripheral = discoveredPeripheral
@@ -91,8 +77,8 @@ final class BCCentralController: CentralController {
                 guard
                     let peripheral = self?.peripheral,
                     let service = peripheral.services(withUUID: echoID)?.first
-                    else {
-                        throw CentralError.serviceNotFound
+                else {
+                    throw CentralError.serviceNotFound
                 }
                 return service.discoverCharacteristics([echoID])
             }
@@ -110,7 +96,7 @@ final class BCCentralController: CentralController {
                     .characteristics(withUUID: echoID)?
                     .first
                 else {
-                        throw CentralError.dataCharactertisticNotFound
+                    throw CentralError.dataCharactertisticNotFound
                 }
                 self.echoCharacteristic = characteristic
                 return self.echoCharacteristic!.startNotifying()
